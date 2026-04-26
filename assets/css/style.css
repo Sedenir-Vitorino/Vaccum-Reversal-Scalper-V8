@@ -1,0 +1,1008 @@
+/* ========== RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== VARIÁVEIS DE CORES (Baseadas na Logo) ========== */
+:root {
+    /* Cores principais da logo */
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #0d1229;
+    --bg-card: #111838;
+    --bg-table: #0b1025;
+    
+    /* Cores de texto */
+    --text-primary: #e8ecf4;
+    --text-secondary: #8892b0;
+    
+    /* Cores de destaque (dourado/laranja da logo) */
+    --accent-primary: #e8a850;
+    --accent-secondary: #c8893a;
+    --accent-gold: #f0c070;
+    
+    /* Cores complementares */
+    --accent-blue: #5b8def;
+    --accent-red: #e05555;
+    --accent-green: #4caf84;
+    
+    /* Bordas */
+    --border: #1e2a4a;
+    --border-light: #2a3a5a;
+    
+    /* Gradientes */
+    --gradient-hero: linear-gradient(135deg, #0a0e1a 0%, #111d3a 50%, #0a0e1a 100%);
+    --gradient-gold: linear-gradient(135deg, #e8a850, #f0c070, #c8893a);
+    --gradient-card: linear-gradient(145deg, #111838, #0d1229);
+}
+
+/* ========== BASE ========== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: var(--accent-gold);
+}
+
+/* ========== HEADER ========== */
+header {
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 45px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-primary);
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: var(--gradient-gold);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ========== HERO COM BANNER ========== */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    overflow: hidden;
+    /* Banner background */
+    background-image: url('../images/banner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Overlay escuro com transparência 60% */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 26, 0.9);  /* 60% de opacidade */
+    z-index: 1;
+}
+
+/* Segundo overlay para efeito gradiente nas bordas */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        transparent 40%,
+        rgba(10, 14, 26, 0.4) 100%
+    );
+    z-index: 2;
+}
+
+/* Conteúdo do hero fica acima dos overlays */
+.hero h1,
+.hero .subtitle,
+.hero p,
+.hero .cta-buttons {
+    position: relative;
+    z-index: 3;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 15px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero .subtitle {
+    font-size: 24px;
+    color: var(--accent-primary);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ========== BANNER PARA PÁGINAS INTERNAS ========== */
+.page-banner {
+    text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../images/banner-interno.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Overlay mais escuro para páginas internas (50%) */
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 26, 0.8);  /* 50% de opacidade */
+    z-index: 1;
+}
+
+/* Gradiente suave nas bordas */
+.page-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at center,
+        transparent 50%,
+        rgba(10, 14, 26, 0.3) 100%
+    );
+    z-index: 2;
+}
+
+.page-banner h1,
+.page-banner p,
+.page-banner .breadcrumb {
+    position: relative;
+    z-index: 3;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.page-banner h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-banner p {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+.page-banner .breadcrumb {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.page-banner .breadcrumb a {
+    color: var(--accent-primary);
+}
+
+/* ========== BOTÕES ========== */
+.btn-primary {
+    display: inline-block;
+    padding: 14px 30px;
+    background: var(--gradient-gold);
+    color: #0a0e1a !important;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(232, 168, 80, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(232, 168, 80, 0.5);
+    color: #0a0e1a !important;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 14px 30px;
+    background: transparent;
+    color: var(--accent-primary) !important;
+    border: 2px solid var(--accent-primary);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: rgba(232, 168, 80, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(232, 168, 80, 0.2);
+}
+
+.btn-download {
+    display: inline-block;
+    padding: 6px 15px;
+    background: var(--accent-primary);
+    color: #0a0e1a !important;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-download:hover {
+    background: var(--accent-gold);
+    transform: scale(1.05);
+}
+
+.btn-view {
+    display: inline-block;
+    padding: 6px 15px;
+    background: transparent;
+    color: var(--accent-primary) !important;
+    border: 1px solid var(--accent-primary);
+    border-radius: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+    transition: all 0.3s;
+}
+
+.btn-view:hover {
+    background: rgba(232, 168, 80, 0.1);
+}
+
+.btn-card {
+    display: inline-block;
+    padding: 10px 25px;
+    background: var(--accent-primary);
+    color: #0a0e1a !important;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.btn-card:hover {
+    background: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.btn-buy {
+    display: inline-block;
+    padding: 16px 35px;
+    background: var(--gradient-gold);
+    color: #0a0e1a !important;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(232, 168, 80, 0.4);
+    margin-top: 20px;
+}
+
+.btn-buy:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(232, 168, 80, 0.6);
+}
+
+/* ========== SEÇÕES ========== */
+section {
+    padding: 80px 20px;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-desc {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* ========== GRID DE CARDS ========== */
+.about-grid, .preset-cards, .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========== ABOUT CARDS ========== */
+.about-card {
+    background: var(--gradient-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-primary);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.about-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--accent-primary);
+}
+
+.about-card p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ========== PRESET CARDS ========== */
+.preset-card {
+    background: var(--gradient-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.preset-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-primary);
+}
+
+.asset-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.preset-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--accent-primary);
+}
+
+.preset-card p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* ========== BADGES ========== */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(232, 168, 80, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid var(--accent-primary);
+}
+
+.badge-red {
+    background: rgba(224, 85, 85, 0.15);
+    color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+}
+
+.badge-green {
+    background: rgba(76, 175, 132, 0.15);
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green);
+}
+
+.badge-blue {
+    background: rgba(91, 141, 239, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+}
+
+.badge-gold {
+    background: rgba(232, 168, 80, 0.15);
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+}
+
+/* ========== BUY SECTION ========== */
+.buy-section {
+    background: var(--gradient-hero);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.buy-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--gradient-card);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.buy-card h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--accent-primary);
+}
+
+.buy-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.buy-card ul {
+    list-style: none;
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto 20px;
+}
+
+.buy-card ul li {
+    padding: 8px 0;
+    color: var(--text-primary);
+    font-size: 15px;
+}
+
+/* ========== PÁGINA DE PRESETS DO ATIVO ========== */
+.preset-asset-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ========== PRESET SECTION ========== */
+.preset-section {
+    background: var(--gradient-card);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+}
+
+.preset-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.preset-title h2 {
+    font-size: 28px;
+    color: var(--text-primary);
+}
+
+.preset-stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--accent-primary);
+}
+
+.stat-label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.preset-desc {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ========== TABELA DE ARQUIVOS ========== */
+.files-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-table);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.files-table th {
+    background: var(--bg-secondary);
+    padding: 14px 15px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-primary);
+    border-bottom: 2px solid var(--border);
+}
+
+.files-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.files-table tbody tr:hover {
+    background: rgba(232, 168, 80, 0.03);
+}
+
+.files-table strong {
+    color: var(--text-primary);
+}
+
+/* ========== ASSET CARDS (Página de Presets) ========== */
+.asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.asset-card {
+    background: var(--gradient-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.asset-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-primary);
+}
+
+.asset-header {
+    margin-bottom: 15px;
+}
+
+.asset-header .asset-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.asset-header h2 {
+    font-size: 24px;
+    color: var(--accent-primary);
+}
+
+.asset-info p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background: var(--bg-secondary);
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .preset-stats {
+        gap: 20px;
+    }
+
+    .stat-item {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .files-table {
+        font-size: 12px;
+    }
+
+    .files-table th,
+    .files-table td {
+        padding: 10px;
+    }
+
+    .btn-download,
+    .btn-view {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    
+    .buy-card {
+        padding: 25px;
+    }
+    
+    .hero {
+        padding: 80px 20px;
+    }
+    
+    .page-banner {
+        padding: 60px 20px;
+    }
+}
+/* ========== TABELA DE OTIMIZAÇÕES ========== */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.optimization-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    background: var(--bg-table);
+    font-size: 14px;
+}
+
+.optimization-table th {
+    background: var(--bg-secondary);
+    padding: 18px 15px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent-primary);
+    border-bottom: 3px solid var(--accent-primary);
+    white-space: nowrap;
+}
+
+.optimization-table td {
+    padding: 16px 15px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.optimization-table tbody tr {
+    transition: all 0.3s;
+}
+
+.optimization-table tbody tr:hover {
+    background: rgba(232, 168, 80, 0.05);
+    transform: scale(1.005);
+}
+
+.optimization-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.optimization-table tbody tr:nth-child(even):hover {
+    background: rgba(232, 168, 80, 0.05);
+}
+
+/* Valores positivos (verde) */
+.optimization-table .positive {
+    color: var(--accent-green);
+    font-weight: 700;
+}
+
+/* Valores negativos (vermelho) */
+.optimization-table .negative {
+    color: var(--accent-red);
+    font-weight: 600;
+}
+
+/* Coluna de Download */
+.optimization-table td:last-child {
+    padding: 12px;
+}
+
+/* ========== INFO DO ZIP ========== */
+.zip-info {
+    background: var(--gradient-card);
+    border-radius: 12px;
+    padding: 25px 30px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.zip-info h3 {
+    color: var(--accent-primary);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.zip-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.zip-item {
+    background: var(--bg-secondary);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 768px) {
+    .optimization-table {
+        min-width: 700px;
+        font-size: 12px;
+    }
+    
+    .optimization-table th,
+    .optimization-table td {
+        padding: 10px 8px;
+        font-size: 11px;
+    }
+    
+    .zip-items {
+        gap: 10px;
+    }
+    
+    .zip-item {
+        font-size: 11px;
+        padding: 8px 12px;
+    }
+}
+/* ========== SELETOR DE IDIOMA ========== */
+.lang-switcher {
+    display: flex;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    padding: 6px 12px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.lang-btn.active {
+    background: var(--accent-primary);
+    color: #0a0e1a;
+    border-color: var(--accent-primary);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .lang-switcher {
+        margin-left: 10px;
+    }
+    
+    .lang-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
+/* ========== BOTÃO VER MAIS ========== */
+.see-more {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-see-more {
+    display: inline-block;
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--accent-primary) !important;
+    border: 2px solid var(--accent-primary);
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-see-more:hover {
+    background: var(--accent-primary);
+    color: #0a0e1a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(232, 168, 80, 0.3);
+}
+/* ========== SELETOR DE IDIOMA COM BANDEIRAS ========== */
+.lang-switcher {
+    display: flex;
+    gap: 8px;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+}
+
+.lang-btn img {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.lang-btn:hover {
+    background: rgba(232, 168, 80, 0.1);
+    border-color: rgba(232, 168, 80, 0.3);
+}
+
+.lang-btn:hover img {
+    transform: scale(1.1);
+}
+
+.lang-btn.active {
+    background: rgba(232, 168, 80, 0.15);
+    border-color: var(--accent-primary);
+}
+
+.lang-btn.active img {
+    box-shadow: 0 0 10px rgba(232, 168, 80, 0.5);
+}
+
+.lang-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .lang-switcher {
+        margin-left: 10px;
+        gap: 5px;
+    }
+    
+    .lang-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .lang-btn img {
+        width: 22px;
+        height: 22px;
+    }
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#fff"/>
+  <g fill="#B22234">
+    <rect y="0" width="512" height="39.4"/>
+    <rect y="78.8" width="512" height="39.4"/>
+    <rect y="157.6" width="512" height="39.4"/>
+    <rect y="236.2" width="512" height="39.4"/>
+    <rect y="315" width="512" height="39.4"/>
+    <rect y="393.8" width="512" height="39.4"/>
+    <rect y="472.4" width="512" height="39.6"/>
+  </g>
+  <rect width="256" height="276" fill="#3C3B6E"/>
+  <g fill="#fff">
+    <polygon points="24.6,13.8 28.4,25.2 40.5,25.2 30.7,32.4 34.5,43.8 24.6,36.6 14.7,43.8 18.5,32.4 8.7,25.2 20.8,25.2"/>
+    <!-- Estrelas simplificadas -->
+  </g>
+</svg>

@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "VRS Bots - Vacuum Reversal Scalper V8",
+    "description": "Professional presets for Vacuum Reversal Scalper V8. Optimized performance for cTrader."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About the Robot",
+    "presets": "Presets",
+    "buy": "Buy Robot",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Vacuum Reversal Scalper V8",
+    "subtitle": "Professional Presets for cTrader",
+    "description": "Maximize your results with presets optimized by asset and risk profile",
+    "btn_presets": "📊 View Available Presets",
+    "btn_buy": "🛒 Buy on cTrader Store"
+  },
+  "about": {
+    "title": "About the Robot",
+    "strategy": {
+      "title": "Advanced Strategy",
+      "desc": "12 candlestick patterns combined with dynamic Support/Resistance and multiple technical indicators for precise entries."
+    },
+    "protection": {
+      "title": "Total Protection",
+      "desc": "100% guaranteed SL and TP, fixed minimum profit, 3 stages of SL movement, extra buffer and trailing stop."
+    },
+    "indicators": {
+      "title": "Indicators",
+      "desc": "RSI, EMA, Bollinger Bands, Stochastic, MACD and statistical prediction for signal confirmation."
+    },
+    "assets": {
+      "title": "Multi-Assets",
+      "desc": "BTCUSD, EURUSD, ETHUSD, GBPUSD, XAUUSD. Optimized presets for each asset and timeframe."
+    }
+  },
+  "featured": {
+    "title": "Presets by Asset",
+    "desc": "Choose an asset and find the ideal preset for your risk profile",
+    "see_more": "View All Presets →"
+  },
+  "buy_section": {
+    "title": "Get the Robot",
+    "robot_name": "🤖 Vacuum Reversal Scalper V8",
+    "desc": "Complete robot with all features for cTrader",
+    "features": [
+      "✅ 12 Candlestick Patterns",
+      "✅ Dynamic S/R",
+      "✅ Total SL/TP Protection",
+      "✅ Multiple Indicators",
+      "✅ Information Panel",
+      "✅ Free Presets"
+    ],
+    "btn": "🛒 Buy on cTrader Store"
+  },
+  "footer": {
+    "contact": "📧 Contact: vrsbots@email.com",
+    "disclaimer": "⚠️ Risk Warning: Trading involves risk of financial loss. Past results do not guarantee future profits.",
+    "copyright": "© 2026 VRS Bots. All rights reserved."
+  },
+  "presets_page": {
+    "title": "Available Presets",
+    "desc": "Choose an asset to see optimized presets",
+    "coming_soon": "Coming Soon"
+  },
+  "optimization_page": {
+    "breadcrumb_home": "Home",
+    "breadcrumb_presets": "Presets",
+    "desc": "Vacuum Reversal Scalper V8 • Download the complete package with preset and report",
+    "table": {
+      "optimization": "Optimization",
+      "capital": "Capital",
+      "net_profit": "Net Profit",
+      "profit_factor": "Profit Factor",
+      "trades": "Trades",
+      "won_trades": "Won Trades",
+      "lost_trades": "Lost Trades",
+      "drawdown": "Drawdown %",
+      "download": "Download"
+    },
+    "zip_info": {
+      "title": "📦 ZIP File Contents:",
+      "items": [
+        "⚙️ parameters.cbotset",
+        "📊 Complete Operations Summary",
+        "📄 events.json",
+        "📝 log.txt"
+      ]
+    }
+  },
+  "back": "← Back",
+  "home_link": "🏠 Home",
+  "language": "🌐 Language"
+}

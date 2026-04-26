@@ -1,0 +1,96 @@
+{
+  "site": {
+    "title": "VRS Bots - Vacuum Reversal Scalper V8",
+    "description": "Presets profissionais para o Vacuum Reversal Scalper V8. Performance otimizada para cTrader."
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre o Robô",
+    "presets": "Presets",
+    "buy": "Comprar Robô",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "Vacuum Reversal Scalper V8",
+    "subtitle": "Presets Profissionais para cTrader",
+    "description": "Maximize seus resultados com presets otimizados por ativo e perfil de risco",
+    "btn_presets": "📊 Ver Presets Disponíveis",
+    "btn_buy": "🛒 Comprar na Loja cTrader"
+  },
+  "about": {
+    "title": "Sobre o Robô",
+    "strategy": {
+      "title": "Estratégia Avançada",
+      "desc": "12 padrões de candle combinados com Suporte/Resistência dinâmico e múltiplos indicadores técnicos para entradas precisas."
+    },
+    "protection": {
+      "title": "Proteção Total",
+      "desc": "SL e TP 100% garantidos, lucro mínimo fixo, 3 estágios de movimentação do SL, buffer extra e trailing stop."
+    },
+    "indicators": {
+      "title": "Indicadores",
+      "desc": "RSI, EMA, Bollinger Bands, Estocástico, MACD e previsão estatística para confirmação de sinais."
+    },
+    "assets": {
+      "title": "Multi-Ativos",
+      "desc": "BTCUSD, EURUSD, ETHUSD, GBPUSD, XAUUSD. Presets otimizados para cada ativo e timeframe."
+    }
+  },
+  "featured": {
+    "title": "Presets por Ativo",
+    "desc": "Escolha o ativo e encontre o preset ideal para seu perfil de risco",
+    "see_more": "Ver Todos os Presets →"
+  },
+  "buy_section": {
+    "title": "Adquira o Robô",
+    "robot_name": "🤖 Vacuum Reversal Scalper V8",
+    "desc": "Robô completo com todas as funcionalidades para cTrader",
+    "features": [
+      "✅ 12 Padrões de Candle",
+      "✅ S/R Dinâmico",
+      "✅ Proteção Total de SL/TP",
+      "✅ Múltiplos Indicadores",
+      "✅ Painel Informativo",
+      "✅ Presets Gratuitos"
+    ],
+    "btn": "🛒 Comprar na Loja cTrader"
+  },
+  "footer": {
+    "contact": "📧 Contato: vrsbots@email.com",
+    "disclaimer": "⚠️ Aviso de Risco: Trading envolve risco de perda financeira. Resultados passados não garantem lucros futuros.",
+    "copyright": "© 2026 VRS Bots. Todos os direitos reservados."
+  },
+  "presets_page": {
+    "title": "Presets Disponíveis",
+    "desc": "Escolha o ativo para ver os presets otimizados",
+    "coming_soon": "Em Breve"
+  },
+  "optimization_page": {
+    "breadcrumb_home": "Início",
+    "breadcrumb_presets": "Presets",
+    "desc": "Vacuum Reversal Scalper V8 • Baixe o pacote completo com preset e relatório",
+    "table": {
+      "optimization": "Otimização",
+      "capital": "Capital",
+      "net_profit": "Lucro Líquido",
+      "profit_factor": "Fator de Lucro",
+      "trades": "Negociações",
+      "won_trades": "Negociações Ganhas",
+      "lost_trades": "Negociações Perdidas",
+      "drawdown": "Decréscimo de Capital %",
+      "download": "Download"
+    },
+    "zip_info": {
+      "title": "📦 Conteúdo do arquivo ZIP:",
+      "items": [
+        "⚙️ parameters.cbotset",
+        "📊 Resumo Total das Operações",
+        "📄 events.json",
+        "📝 log.txt"
+      ]
+    }
+  },
+  "back": "← Voltar",
+  "home_link": "🏠 Início",
+  "language": "🌐 Idioma"
+}
