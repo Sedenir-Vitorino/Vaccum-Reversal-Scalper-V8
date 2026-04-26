@@ -56,7 +56,7 @@
     "btn": "🛒 Comprar na Loja cTrader"
   },
   "footer": {
-    "contact": "📧 Contato: vrsbots@email.com",
+    "contact": "📧 Contato: vrsbots@gmail.com",
     "disclaimer": "⚠️ Aviso de Risco: Trading envolve risco de perda financeira. Resultados passados não garantem lucros futuros.",
     "copyright": "© 2026 VRS Bots. Todos os direitos reservados."
   },
@@ -70,14 +70,17 @@
     "breadcrumb_presets": "Presets",
     "desc": "Vacuum Reversal Scalper V8 • Baixe o pacote completo com preset e relatório",
     "table": {
-      "optimization": "Otimização",
-      "capital": "Capital",
+      "optimization": "#",
+      "initial_capital": "Capital Inicial",
+      "final_capital": "Capital Final",
       "net_profit": "Lucro Líquido",
       "profit_factor": "Fator de Lucro",
       "trades": "Negociações",
-      "won_trades": "Negociações Ganhas",
-      "lost_trades": "Negociações Perdidas",
-      "drawdown": "Decréscimo de Capital %",
+      "won_trades": "Ganhas",
+      "lost_trades": "Perdidas",
+      "drawdown": "Drawdown %",
+      "start_date": "Data Inicial",
+      "end_date": "Data Final",
       "download": "Download"
     },
     "zip_info": {
