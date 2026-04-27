@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "VRS Bots - Vacuum Reversal Scalper V8",
-    "description": "Presets profissionais para o Vacuum Reversal Scalper V8. Performance otimizada para cTrader."
+    "description": "Presets profissionais de BTCUSD para o Vacuum Reversal Scalper V8. Performance otimizada para cTrader."
   },
   "nav": {
     "home": "Início",
@@ -12,16 +12,16 @@
   },
   "hero": {
     "title": "Vacuum Reversal Scalper V8",
-    "subtitle": "Presets Profissionais para cTrader",
-    "description": "Maximize seus resultados com presets otimizados por ativo e perfil de risco",
-    "btn_presets": "📊 Ver Presets Disponíveis",
+    "subtitle": "Presets Profissionais para BTCUSD",
+    "description": "Maximize seus resultados no Bitcoin com presets otimizados para cada perfil de risco",
+    "btn_presets": "📊 Ver Presets BTCUSD",
     "btn_buy": "🛒 Comprar na Loja cTrader"
   },
   "about": {
     "title": "Sobre o Robô",
     "strategy": {
       "title": "Estratégia Avançada",
-      "desc": "12 padrões de candle combinados com Suporte/Resistência dinâmico e múltiplos indicadores técnicos para entradas precisas."
+      "desc": "12 padrões de candle combinados com Suporte/Resistência dinâmico e múltiplos indicadores técnicos para entradas precisas no BTCUSD."
     },
     "protection": {
       "title": "Proteção Total",
@@ -31,15 +31,15 @@
       "title": "Indicadores",
       "desc": "RSI, EMA, Bollinger Bands, Estocástico, MACD e previsão estatística para confirmação de sinais."
     },
-    "assets": {
-      "title": "Multi-Ativos",
-      "desc": "BTCUSD, EURUSD, ETHUSD, GBPUSD, XAUUSD. Presets otimizados para cada ativo e timeframe."
+    "asset": {
+      "title": "Exclusivo BTCUSD",
+      "desc": "Otimizado exclusivamente para Bitcoin. Maximize seus resultados com nossos presets profissionais."
     }
   },
   "featured": {
-    "title": "Presets por Ativo",
-    "desc": "Escolha o ativo e encontre o preset ideal para seu perfil de risco",
-    "see_more": "Ver Todos os Presets →"
+    "title": "Presets BTCUSD",
+    "desc": "Escolha o preset ideal para seu perfil de risco",
+    "presets_available": "Vários presets disponíveis"
   },
   "buy_section": {
     "title": "Adquira o Robô",
@@ -51,7 +51,7 @@
       "✅ Proteção Total de SL/TP",
       "✅ Múltiplos Indicadores",
       "✅ Painel Informativo",
-      "✅ Presets Gratuitos"
+      "✅ Presets BTCUSD Gratuitos"
     ],
     "btn": "🛒 Comprar na Loja cTrader"
   },
@@ -63,7 +63,8 @@
   "presets_page": {
     "title": "Presets Disponíveis",
     "desc": "Escolha o ativo para ver os presets otimizados",
-    "coming_soon": "Em Breve"
+    "btcusd_desc": "Vários presets otimizados com backtests de até +9.500%",
+    "view_presets": "Ver Presets →"
   },
   "optimization_page": {
     "breadcrumb_home": "Início",
