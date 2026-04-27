@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="site.title">Manual - Vacuum BTCUSD Edition</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .manual-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .manual-hero {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            background: var(--gradient-hero);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .manual-hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .manual-hero .edition {
+            font-size: 20px;
+            color: var(--accent-primary);
+            margin-bottom: 15px;
+        }
+
+        .manual-hero .version {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: rgba(232, 168, 80, 0.1);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(232, 168, 80, 0.3);
+        }
+
+        .manual-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .manual-stat {
+            text-align: center;
+        }
+
+        .manual-stat .value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-primary);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .manual-stat .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .manual-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .manual-section h2 {
+            font-size: 24px;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .manual-section h3 {
+            font-size: 18px;
+            color: var(--accent-blue);
+            margin: 25px 0 15px;
+        }
+
+        .manual-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .manual-section ul,
+        .manual-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .manual-section li {
+            margin-bottom: 8px;
+        }
+
+        .manual-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-table);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .manual-table th {
+            background: var(--bg-secondary);
+            padding: 14px 15px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .manual-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .manual-table td:first-child {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-blue);
+            font-size: 13px;
+        }
+
+        .manual-table td:nth-child(2) {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .alert-box {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid;
+        }
+
+        .alert-warning {
+            background: rgba(255, 59, 92, 0.08);
+            border-color: rgba(255, 59, 92, 0.3);
+        }
+
+        .alert-warning h4 { color: #ff3b5c; margin-bottom: 8px; }
+
+        .alert-info {
+            background: rgba(0, 212, 255, 0.06);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .alert-info h4 { color: #00d4ff; margin-bottom: 8px; }
+
+        .alert-success {
+            background: rgba(57, 255, 20, 0.06);
+            border-color: rgba(57, 255, 20, 0.2);
+        }
+
+        .alert-success h4 { color: #39ff14; margin-bottom: 8px; }
+
+        .alert-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .btn-download-manual {
+            display: inline-block;
+            padding: 16px 35px;
+            background: var(--gradient-gold);
+            color: #0a0e1a !important;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(232, 168, 80, 0.4);
+        }
+
+        .btn-download-manual:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 168, 80, 0.6);
+        }
+
+        .download-box {
+            text-align: center;
+            padding: 40px;
+            background: var(--gradient-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .download-box h2 {
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .download-box p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .filter-tag {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-active {
+            background: rgba(57, 255, 20, 0.1);
+            color: #39ff14;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
+        .tag-inactive {
+            background: rgba(107, 107, 128, 0.1);
+            color: #6b6b80;
+            border: 1px solid rgba(107, 107, 128, 0.2);
+        }
+
+        .formula-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-primary);
+            border-radius: 0 12px 12px 0;
+            padding: 20px 25px;
+            margin: 20px 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+        }
+
+        .formula-box .formula-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-primary);
+            margin-bottom: 10px;
+        }
+
+        .formula-box .formula-main {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .formula-box .formula-example {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .formula-box .formula-example span {
+            color: #39ff14;
+        }
+
+        @media (max-width: 768px) {
+            .manual-hero h1 {
+                font-size: 28px;
+            }
+            .manual-stats {
+                gap: 20px;
+            }
+            .manual-stat .value {
+                font-size: 22px;
+            }
+            .manual-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-i18n="manual.back">← Back to Home</a>
+            <a href="presets/" class="home-link" data-i18n="manual.presets_link">📊 Presets</a>
+        </nav>
+    </header>
+
+    <div class="manual-wrapper">
+        <!-- Hero -->
+        <div class="manual-hero">
+            <span class="version" data-i18n="manual.badge">cTrader cBot · BTCUSD Edition · v3.5</span>
+            <h1 data-i18n="manual.hero_title">VACUUM BTCUSD</h1>
+            <p class="edition" data-i18n="manual.hero_sub">Reversal Scalper — User Manual</p>
+            
+            <div class="manual-stats">
+                <div class="manual-stat">
+                    <div class="value">0.01</div>
+                    <div class="label" data-i18n="manual.stat_volume">Default Volume (BTC)</div>
+                </div>
+                <div class="manual-stat">
+                    <div class="value">$1.70</div>
+                    <div class="label" data-i18n="manual.stat_sl">Default Stop Loss</div>
+                </div>
+                <div class="manual-stat">
+                    <div class="value">$0.20</div>
+                    <div class="label" data-i18n="manual.stat_tp">Default Take Profit</div>
+                </div>
+                <div class="manual-stat">
+                    <div class="value">61</div>
+                    <div class="label" data-i18n="manual.stat_trades">Max trades/day</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Box -->
+        <div class="download-box">
+            <h2 data-i18n="manual.download_title">📥 Complete Manual</h2>
+            <p data-i18n="manual.download_desc">Download the full manual with all details, formulas, and optimized parameters</p>
+            <a href="docs/VacuumBTCUSD_Manual.html" class="btn-download-manual" download data-i18n="manual.download_btn">
+                ⬇️ Download Complete Manual (HTML)
+            </a>
+        </div>
+
+        <!-- Overview -->
+        <div class="manual-section">
+            <h2 data-i18n="manual.overview_title">🎯 What is Vacuum BTCUSD</h2>
+            <p data-i18n="manual.overview_desc">A reversal scalper that identifies candle patterns and filters entries by trend direction and price position relative to support and resistance zones. Developed exclusively for BTCUSD CFD on the M1 timeframe.</p>
+            
+            <h3 data-i18n="manual.features_title">Key Features</h3>
+            <ul>
+                <li><span data-i18n="manual.feature_candles">Candle Patterns: Detects 7 classic patterns</span> <span class="filter-tag tag-active" data-i18n="manual.tag_active">Active by default</span></li>
+                <li><span data-i18n="manual.feature_trend">Trend Filter (EMA): Defines market direction</span> <span class="filter-tag tag-inactive" data-i18n="manual.tag_inactive">Disabled by default</span></li>
+                <li><span data-i18n="manual.feature_sr">Support & Resistance: Dynamic S/R from last N candles</span> <span class="filter-tag tag-inactive" data-i18n="manual.tag_inactive">Disabled by default</span></li>
+                <li><span data-i18n="manual.feature_atr">ATR Filter: Blocks entries when volatility is outside normal range</span> <span class="filter-tag tag-active" data-i18n="manual.tag_active">Active by default</span></li>
+                <li><span data-i18n="manual.feature_dynamic_sl">Dynamic SL: SL rises automatically</span> <span class="filter-tag tag-inactive" data-i18n="manual.tag_inactive">Disabled by default</span></li>
+                <li><span data-i18n="manual.feature_sltp_broker">SL/TP at Broker: Always registered as absolute prices</span> <span class="filter-tag tag-active" data-i18n="manual.tag_always">Always active</span></li>
+            </ul>
+        </div>
+
+        <!-- Parameters -->
+        <div class="manual-section">
+            <h2 data-i18n="manual.params_title">⚙️ Parameters</h2>
+            <p data-i18n="manual.params_desc">Default values optimized by the backtester. Adjust freely — the defaults are the recommended starting point.</p>
+            
+            <h3 data-i18n="manual.group_volume">Volume</h3>
+            <table class="manual-table">
+                <tr><th data-i18n="manual.param_volume">Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td>Volume</td><td>0.01</td><td data-i18n="manual.param_desc_volume">BTC amount per trade. Use 0.01 for small accounts.</td></tr>
+                <tr><td>StopLossUSD</td><td>$1.70</td><td data-i18n="manual.param_desc_sl">Max loss per trade. With 0.01 BTC ≈ 170 price points.</td></tr>
+                <tr><td>TakeProfitUSD</td><td>$0.20</td><td data-i18n="manual.param_desc_tp">Profit target per trade. With 0.01 BTC ≈ 20 price points.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_candles">Candle Patterns</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_min_strength">MinCandleStrength</td><td>28.9%</td><td data-i18n="manual.desc_min_strength">Minimum body/range ratio.</td></tr>
+                <tr><td data-i18n="manual.param_ignore_doji">IgnoreDoji</td><td>true</td><td data-i18n="manual.desc_ignore_doji">Ignores Doji candles.</td></tr>
+                <tr><td data-i18n="manual.param_use_inverted">UseInvertedHammer</td><td>true</td><td data-i18n="manual.desc_inverted">Long upper shadow, bullish body.</td></tr>
+                <tr><td data-i18n="manual.param_use_bearish_engulf">UseBearishEngulfing</td><td>true</td><td data-i18n="manual.desc_bearish_engulf">Bearish candle engulfs previous bullish.</td></tr>
+                <tr><td data-i18n="manual.param_use_hammer">UseHammer</td><td>false</td><td data-i18n="manual.desc_hammer">Long lower shadow.</td></tr>
+                <tr><td data-i18n="manual.param_use_bullish_engulf">UseBullishEngulfing</td><td>false</td><td data-i18n="manual.desc_bullish_engulf">Bullish candle engulfs previous bearish.</td></tr>
+                <tr><td data-i18n="manual.param_use_shooting">UseShootingStar</td><td>false</td><td data-i18n="manual.desc_shooting">Long upper shadow, small body.</td></tr>
+                <tr><td data-i18n="manual.param_use_bullish_harami">UseBullishHarami</td><td>false</td><td data-i18n="manual.desc_bullish_harami">Small bullish inside previous bearish.</td></tr>
+                <tr><td data-i18n="manual.param_use_bearish_harami">UseBearishHarami</td><td>false</td><td data-i18n="manual.desc_bearish_harami">Small bearish inside previous bullish.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_trend">Trend Filter (EMA)</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_use_ema">UseEMA</td><td>false</td><td data-i18n="manual.desc_use_ema">Only trades in confirmed trend direction.</td></tr>
+                <tr><td data-i18n="manual.param_ema_period">EMAPeriod</td><td>165</td><td data-i18n="manual.desc_ema_period">165 periods on M1 ≈ 2h45min.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_sr">Support & Resistance</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_use_sr">UseSR</td><td>false</td><td data-i18n="manual.desc_use_sr">Entries only near S/R zones.</td></tr>
+                <tr><td data-i18n="manual.param_candles_sr">CandlesSR</td><td>183</td><td data-i18n="manual.desc_candles_sr">183 candles on M1 ≈ 3 hours.</td></tr>
+                <tr><td data-i18n="manual.param_proximity">ProximityPercent</td><td>50.5%</td><td data-i18n="manual.desc_proximity">Zone size as % of total S/R range.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_atr">ATR Filter (Volatility)</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_use_atr">UseATR</td><td>true</td><td data-i18n="manual.desc_use_atr">Blocks entries on abnormal volatility.</td></tr>
+                <tr><td data-i18n="manual.param_atr_period">ATRPeriod</td><td>8</td><td data-i18n="manual.desc_atr_period">Fast ATR period.</td></tr>
+                <tr><td data-i18n="manual.param_atr_max">ATRMaxMult</td><td>1.3x</td><td data-i18n="manual.desc_atr_max">Max volatility multiplier.</td></tr>
+                <tr><td data-i18n="manual.param_atr_min">ATRMinMult</td><td>0.3x</td><td data-i18n="manual.desc_atr_min">Min volatility multiplier.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_protection">Daily Protection</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_max_trades">MaxTradesPerDay</td><td>61</td><td data-i18n="manual.desc_max_trades">Maximum trades per day.</td></tr>
+                <tr><td data-i18n="manual.param_max_loss">MaxDailyLossUSD</td><td>$1.20</td><td data-i18n="manual.desc_max_loss">Maximum daily loss.</td></tr>
+                <tr><td data-i18n="manual.param_max_consec">MaxConsecLosses</td><td>3</td><td data-i18n="manual.desc_max_consec">Max consecutive losses.</td></tr>
+                <tr><td data-i18n="manual.param_cooldown">CooldownMinutes</td><td>2 min</td><td data-i18n="manual.desc_cooldown">Minimum interval between trades.</td></tr>
+                <tr><td data-i18n="manual.param_close_fail">CloseOnSLTPFailure</td><td>true</td><td data-i18n="manual.desc_close_fail">Close if SL/TP fails.</td></tr>
+            </table>
+
+            <h3 data-i18n="manual.group_dynamic_sl">Dynamic SL</h3>
+            <table class="manual-table">
+                <tr><th>Parameter</th><th>Default</th><th>Description</th></tr>
+                <tr><td data-i18n="manual.param_use_sl_dinamico">UseSLDinamico</td><td>false</td><td data-i18n="manual.param_desc_use_sl">Enable dynamic SL trailing.</td></tr>
+                <tr><td data-i18n="manual.param_sl_piso">SLDinamicoPisoUSD</td><td>$0.01</td><td data-i18n="manual.param_desc_piso">Minimum guaranteed profit locked.</td></tr>
+                <tr><td data-i18n="manual.param_sl_percent">SLDinamicoPercent</td><td>90.1%</td><td data-i18n="manual.param_desc_percent">% of current profit added to floor.</td></tr>
+            </table>
+        </div>
+
+        <!-- Installation -->
+        <div class="manual-section">
+            <h2 data-i18n="manual.install_title">🔧 Installation</h2>
+            <ol>
+                <li data-i18n="manual.install_step1_desc">Open cTrader → Automate → New cBot. Name it VacuumBTCUSD.</li>
+                <li data-i18n="manual.install_step2_desc">Paste the code from VacuumBTCUSD.cs. Press F6 to compile.</li>
+                <li data-i18n="manual.install_step3_desc">Open a BTCUSD M1 chart. Drag the cBot to the chart.</li>
+                <li data-i18n="manual.install_step4_desc">Import optimized parameters (JSON file).</li>
+                <li data-i18n="manual.install_step5_desc">Always test on Demo account first!</li>
+            </ol>
+
+            <div class="alert-box alert-success">
+                <h4 data-i18n="manual.sltp_confirm_title">✅ SL/TP Confirmation</h4>
+                <p data-i18n="manual.sltp_confirm_desc">After opening each order, the log should show: SL/TP aplicados (tentativa 1) ✓ | SL=84360.00 TP=84550.00. This confirms protection is active.</p>
+            </div>
+        </div>
+
+        <!-- Warnings -->
+        <div class="alert-box alert-warning">
+            <h4 data-i18n="manual.warning_btc_only_title">⚠️ BTCUSD Only</h4>
+            <p data-i18n="manual.warning_btc_only_desc">This bot is calibrated exclusively for BTCUSD CFD. Using on other assets will produce incorrect SL/TP values.</p>
+        </div>
+
+        <div class="alert-box alert-info">
+            <h4 data-i18n="manual.recommendation_title">💡 Recommendation</h4>
+            <p data-i18n="manual.recommendation_desc">Start with default parameters on a demo account for 1-2 days. Monitor the log with ShowDebug: true before going live.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="manual.footer_copyright">© 2026 VRS Bots. All rights reserved.</p>
+        <p data-i18n="manual.footer_disclaimer">⚠️ Risk Warning: Trading involves risk of financial loss.</p>
+    </footer>
+
+    <script src="assets/js/i18n.js"></script>
+</body>
+</html>

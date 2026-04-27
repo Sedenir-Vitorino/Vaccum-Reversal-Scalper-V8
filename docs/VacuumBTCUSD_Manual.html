@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vacuum BTCUSD Edition — User Manual</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0a0f;
+    --bg2:       #111118;
+    --bg3:       #18181f;
+    --border:    #2a2a38;
+    --accent:    #f7931a;
+    --accent2:   #00d4ff;
+    --accent3:   #39ff14;
+    --danger:    #ff3b5c;
+    --text:      #e8e8f0;
+    --muted:     #6b6b80;
+    --card:      #14141c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(247,147,26,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,212,255,0.08) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(247,147,26,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(247,147,26,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .btc-bg {
+    position: absolute;
+    font-size: 40vw;
+    font-weight: 800;
+    color: rgba(247,147,26,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    font-family: 'Space Mono', monospace;
+    animation: float 12s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+    50% { transform: translate(-50%, -52%) rotate(-4deg); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(247,147,26,0.1);
+    border: 1px solid rgba(247,147,26,0.3);
+    color: var(--accent);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent3);
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .hero-desc {
+    max-width: 600px;
+    color: #9898b0;
+    font-size: 1.05rem;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: #9898b0;
+    max-width: 640px;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .card {
+    background: var(--card);
+    padding: 2rem;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .card:hover { background: var(--bg3); }
+
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+
+  .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  .card .tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .tag-on  { background: rgba(57,255,20,0.1);  color: var(--accent3); border: 1px solid rgba(57,255,20,0.2); }
+  .tag-off { background: rgba(107,107,128,0.1); color: var(--muted);   border: 1px solid rgba(107,107,128,0.2); }
+
+  .param-group { margin-bottom: 3rem; }
+
+  .param-group-title {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .param-group-title h3 {
+    font-size: 1rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .param-group-title .num {
+    background: var(--accent); color: #000;
+    font-size: 0.7rem; font-weight: 700;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; font-family: 'Space Mono', monospace; flex-shrink: 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+
+  thead tr { background: var(--bg3); }
+
+  th {
+    text-align: left; padding: 0.75rem 1rem;
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border);
+  }
+
+  td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(42,42,56,0.5); vertical-align: top; }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  td:first-child { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent2); white-space: nowrap; }
+
+  td.default-val { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); white-space: nowrap; }
+
+  td.desc-col { color: #9898b0; font-size: 0.83rem; }
+
+  .formula-box {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0;
+    padding: 1.5rem 2rem; margin: 1.5rem 0;
+    font-family: 'Space Mono', monospace; font-size: 0.85rem;
+  }
+
+  .formula-box .formula-title {
+    font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.75rem;
+  }
+
+  .formula-box .formula-main { font-size: 1rem; color: var(--text); margin-bottom: 1rem; }
+
+  .formula-box .formula-example { color: var(--muted); font-size: 0.78rem; line-height: 1.8; }
+
+  .formula-box .formula-example span { color: var(--accent3); }
+
+  .flow { display: flex; flex-direction: column; gap: 0; position: relative; }
+
+  .flow::before {
+    content: ''; position: absolute; left: 23px; top: 24px; bottom: 24px;
+    width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+
+  .flow-step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1rem 0; }
+
+  .flow-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--bg3); border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace; font-weight: 700;
+    font-size: 0.9rem; color: var(--accent);
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+
+  .flow-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; margin-top: 0.65rem; }
+
+  .flow-content p { font-size: 0.85rem; color: var(--muted); }
+
+  .code-block {
+    background: #0d0d14; border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; margin: 1.5rem 0;
+  }
+
+  .code-header {
+    background: var(--bg3); padding: 0.6rem 1.2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-dots { display: flex; gap: 6px; }
+  .code-dots span { width: 10px; height: 10px; border-radius: 50%; }
+  .code-dots span:nth-child(1) { background: #ff5f57; }
+  .code-dots span:nth-child(2) { background: #febc2e; }
+  .code-dots span:nth-child(3) { background: #28c840; }
+
+  .code-lang {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  pre {
+    padding: 1.5rem; overflow-x: auto;
+    font-family: 'Space Mono', monospace; font-size: 0.78rem;
+    line-height: 1.7; color: #c8c8e0;
+  }
+
+  .json-key    { color: var(--accent2); }
+  .json-val    { color: var(--accent3); }
+  .json-str    { color: #ff9f43; }
+  .json-bool   { color: var(--accent); }
+  .json-comment{ color: var(--muted); font-style: italic; }
+
+  .alert {
+    display: flex; gap: 1rem; padding: 1.25rem 1.5rem;
+    border-radius: 12px; margin: 1.5rem 0; align-items: flex-start;
+  }
+
+  .alert-warn { background: rgba(255,59,92,0.08); border: 1px solid rgba(255,59,92,0.25); }
+  .alert-info { background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.2); }
+  .alert-success { background: rgba(57,255,20,0.06); border: 1px solid rgba(57,255,20,0.2); }
+
+  .alert-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  .alert-content h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+
+  .alert-warn   h4 { color: var(--danger); }
+  .alert-info   h4 { color: var(--accent2); }
+  .alert-success h4 { color: var(--accent3); }
+
+  .alert-content p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  .logic-grid {
+    display: grid; grid-template-columns: 1fr 48px 1fr;
+    gap: 0; align-items: center; margin: 2rem 0;
+  }
+
+  .logic-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem; text-align: center;
+  }
+
+  .logic-box.bull { border-color: rgba(57,255,20,0.3); }
+  .logic-box.bear { border-color: rgba(255,59,92,0.3); }
+
+  .logic-box .logic-label {
+    font-family: 'Space Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+
+  .logic-box.bull .logic-label { color: var(--accent3); }
+  .logic-box.bear .logic-label { color: var(--danger); }
+
+  .logic-box .logic-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+  .logic-box .logic-text { font-size: 0.8rem; color: var(--muted); }
+
+  .logic-arrow { text-align: center; font-size: 1.5rem; color: var(--accent); }
+
+  .panel-mockup {
+    background: rgba(10,10,15,0.95); border: 1px solid rgba(247,147,26,0.3);
+    border-radius: 8px; padding: 1rem 1.25rem;
+    font-family: 'Space Mono', monospace; font-size: 0.72rem;
+    line-height: 1.8; max-width: 340px;
+    box-shadow: 0 0 40px rgba(247,147,26,0.08);
+  }
+
+  .panel-line { color: #6b6b80; }
+  .panel-title { color: var(--accent); font-weight: 700; text-align: center; }
+  .panel-key { color: var(--muted); }
+  .panel-val { color: var(--text); }
+  .panel-green { color: var(--accent3); }
+  .panel-orange { color: var(--accent); }
+  .panel-red { color: var(--danger); }
+  .panel-blue { color: var(--accent2); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 3rem 0;
+    text-align: center; color: var(--muted); font-size: 0.82rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  footer span { color: var(--accent); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(42,42,56,0.5);
+    padding: 0.9rem 2rem; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace; font-size: 0.85rem;
+    font-weight: 700; color: var(--accent);
+  }
+
+  .nav-logo span { color: var(--text); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+  .nav-links a {
+    font-size: 0.78rem; color: var(--muted); text-decoration: none;
+    font-family: 'Space Mono', monospace; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .highlight { color: var(--accent); }
+  .highlight2 { color: var(--accent2); }
+  .highlight3 { color: var(--accent3); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .logic-grid { grid-template-columns: 1fr; }
+    .logic-arrow { transform: rotate(90deg); }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VACUUM <span>BTCUSD</span></div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#parameters">Parameters</a></li>
+    <li><a href="#logic">Logic</a></li>
+    <li><a href="#panel">Panel</a></li>
+    <li><a href="#installation">Install</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="btc-bg">₿</div>
+
+  <div class="badge">cTrader cBot · BTCUSD Edition · v1.0</div>
+
+  <h1>VACUUM<br><span>BTCUSD</span></h1>
+
+  <div class="hero-sub">Reversal Scalper — User Manual</div>
+
+  <p class="hero-desc">
+    Scalping robot developed exclusively for BTCUSD CFD on the M1 timeframe.
+    Trades candle patterns filtered by EMA trend direction, support/resistance zones
+    and ATR volatility. SL/TP always registered at the broker as absolute prices.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value">0.01</div>
+      <div class="stat-label">Default Volume (BTC)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$1.70</div>
+      <div class="stat-label">Default Stop Loss</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">$0.20</div>
+      <div class="stat-label">Default Take Profit</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">61</div>
+      <div class="stat-label">Max trades/day</div>
+    </div>
+  </div>
+</div>
+
+<section id="overview">
+  <div class="container">
+    <div class="section-label">// 01 — Overview</div>
+    <h2 class="section-title">What is <span class="highlight">Vacuum BTCUSD</span></h2>
+    <p class="section-desc">
+      A reversal scalper that identifies candle patterns and filters entries by trend direction
+      and price position relative to support and resistance zones.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <span class="card-icon">🕯️</span>
+        <h3>Candle Patterns</h3>
+        <p>Detects 7 classic patterns — Hammer, Inverted Hammer, Engulfing, Harami, Shooting Star. Filtered by candle body strength, ignores Dojis.</p>
+        <span class="tag tag-on">Active by default</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">📈</span>
+        <h3>Trend Filter (EMA)</h3>
+        <p>Defines market direction. Price above EMA → buys only. Price below → sells only. Avoids entries against the main trend.</p>
+        <span class="tag tag-off">Disabled by default</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <h3>Support & Resistance</h3>
+        <p>Calculates dynamic S/R from the last N candles. Integrated with EMA: buys only near support, sells only near resistance.</p>
+        <span class="tag tag-off">Disabled by default</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>ATR Filter</h3>
+        <p>Blocks entries when volatility is outside the normal range. Avoids explosive candles (news) and extreme ranging periods.</p>
+        <span class="tag tag-on">Active by default</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Dynamic SL</h3>
+        <p>When profit exceeds the configured floor, the Stop Loss rises automatically locking a growing share of the gain. Never drops.</p>
+        <span class="tag tag-off">Disabled by default</span>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛡️</span>
+        <h3>SL/TP at Broker</h3>
+        <p>SL and TP are always registered at the broker as absolute prices. If the code crashes or freezes, the order remains protected server-side.</p>
+        <span class="tag tag-on">Always active</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parameters">
+  <div class="container">
+    <div class="section-label">// 02 — Parameters</div>
+    <h2 class="section-title">All <span class="highlight">Parameters</span></h2>
+    <p class="section-desc">Default values optimized by the backtester. Adjust freely — the defaults are the recommended starting point.</p>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">01</div><h3>Volume</h3></div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Volume</td><td class="default-val">0.01</td><td class="desc-col">BTC amount per trade. For small accounts use 0.01 (minimum). 1 unit = 1 full BTC. Scale only after validating the strategy.</td></tr>
+          <tr><td>StopLossUSD</td><td class="default-val">$1.70</td><td class="desc-col">Maximum loss per trade in dollars. SL is calculated as absolute price and sent directly to the broker. With 0.01 BTC equals ~170 price points.</td></tr>
+          <tr><td>TakeProfitUSD</td><td class="default-val">$0.20</td><td class="desc-col">Profit target per trade in dollars. With 0.01 BTC equals ~20 price points. Easy to reach on BTCUSD M1 which moves 5-50 points per candle.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">02</div><h3>Dynamic SL</h3></div>
+
+      <div class="formula-box">
+        <div class="formula-title">// Dynamic SL Formula</div>
+        <div class="formula-main">locked_value = FloorUSD + (current_profit × Percent%)</div>
+        <div class="formula-example">
+          Example with defaults (Floor=$0.01, Percent=90.1%):<br>
+          <span>profit = $0.10</span> → locks $0.01 + 90.1%×$0.10 = <span>$0.101</span><br>
+          <span>profit = $0.20</span> → locks $0.01 + 90.1%×$0.20 = <span>$0.191</span><br>
+          <span>profit = $0.50</span> → locks $0.01 + 90.1%×$0.50 = <span>$0.461</span><br>
+          The SL <span>never drops</span> — only rises as profit increases.
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>UseSLDinamico</td><td class="default-val">false</td><td class="desc-col">Enables Dynamic SL. When active, the SL rises automatically as profit grows. Recommended to enable after validating the robot with fixed SL.</td></tr>
+          <tr><td>SLDinamicoPisoUSD</td><td class="default-val">$0.01</td><td class="desc-col">Minimum guaranteed value that the SL always locks. Works as a minimum breakeven — even if the percentage adds little, the floor guarantees this gain.</td></tr>
+          <tr><td>SLDinamicoPercent</td><td class="default-val">90.1%</td><td class="desc-col">Percentage of current profit added to the floor. With 90.1%, if profit=$0.20, SL locks $0.191. Higher % = more aggressive trailing. Range: 1% to 99%.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">03</div><h3>Candle Patterns</h3></div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>MinCandleStrength</td><td class="default-val">28.9%</td><td class="desc-col">Minimum candle strength — ratio between body and total range. 28.9% means the body must be at least 28.9% of the total candle size. Filters weak and inconclusive candles.</td></tr>
+          <tr><td>IgnoreDoji</td><td class="default-val">true</td><td class="desc-col">Ignores Doji candles (body less than 5% of range) as entry signal. Dojis are ambiguous and generate many false positives on M1.</td></tr>
+          <tr><td>UseHammer</td><td class="default-val">false</td><td class="desc-col">Hammer — candle with long lower shadow (≥2× body) and short upper shadow. Bearish to bullish reversal signal.</td></tr>
+          <tr><td>UseInvertedHammer</td><td class="default-val">true</td><td class="desc-col">Inverted Hammer — long upper shadow (≥2× body), bullish body. Bullish reversal signal after a decline.</td></tr>
+          <tr><td>UseBullishEngulfing</td><td class="default-val">false</td><td class="desc-col">Bullish Engulfing — bullish candle that completely engulfs the previous bearish candle. One of the most reliable bullish reversal patterns.</td></tr>
+          <tr><td>UseBullishHarami</td><td class="default-val">false</td><td class="desc-col">Bullish Harami — small bullish candle inside the body of the previous bearish candle. Indicates hesitation and possible reversal.</td></tr>
+          <tr><td>UseShootingStar</td><td class="default-val">false</td><td class="desc-col">Shooting Star — long upper shadow, small body at top. Bearish signal of rejection of higher prices.</td></tr>
+          <tr><td>UseBearishEngulfing</td><td class="default-val">true</td><td class="desc-col">Bearish Engulfing — bearish candle that engulfs the previous bullish candle. Strong bearish reversal signal, especially at resistances.</td></tr>
+          <tr><td>UseBearishHarami</td><td class="default-val">false</td><td class="desc-col">Bearish Harami — small bearish candle inside the body of the previous bullish candle. Softer signal of possible reversal.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">04</div><h3>Trend Filter (EMA)</h3></div>
+
+      <div class="alert alert-info">
+        <div class="alert-icon">💡</div>
+        <div class="alert-content">
+          <h4>How EMA filters entries</h4>
+          <p>With UseEMA active, the robot only opens buys when price is <strong>above</strong> the EMA (uptrend) and only opens sells when price is <strong>below</strong> (downtrend). This avoids entries against the main market movement.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>UseEMA</td><td class="default-val">false</td><td class="desc-col">Activates the trend filter via EMA. When on, only trades in the direction confirmed by the moving average. Recommended to activate to reduce losses in sideways markets.</td></tr>
+          <tr><td>EMAPeriod</td><td class="default-val">165</td><td class="desc-col">Period of the EMA. 165 periods on M1 = ~2h45min of history. Shorter EMAs (20-50) are more reactive; longer ones (100-200) filter more but miss more entries.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">05</div><h3>Support & Resistance</h3></div>
+
+      <div class="logic-grid">
+        <div class="logic-box bull">
+          <div class="logic-label">Uptrend</div>
+          <div class="logic-icon">📈</div>
+          <div class="logic-text">Price > EMA<br>↓<br>Waits for pullback to<br><strong>SUPPORT</strong><br>↓<br>Bullish pattern → BUY</div>
+        </div>
+        <div class="logic-arrow">⟷</div>
+        <div class="logic-box bear">
+          <div class="logic-label">Downtrend</div>
+          <div class="logic-icon">📉</div>
+          <div class="logic-text">Price < EMA<br>↓<br>Waits for rally to<br><strong>RESISTANCE</strong><br>↓<br>Bearish pattern → SELL</div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>UseSR</td><td class="default-val">false</td><td class="desc-col">Activates the S/R filter. When on together with EMA, entries only occur at the right point: buys in support zone in uptrend, sells in resistance zone in downtrend.</td></tr>
+          <tr><td>CandlesSR</td><td class="default-val">183</td><td class="desc-col">Number of candles to calculate dynamic S/R. 183 candles on M1 = ~3 hours. The robot uses the highest high and lowest low of this period as resistance and support.</td></tr>
+          <tr><td>ProximityPercent</td><td class="default-val">50.5%</td><td class="desc-col">Size of the proximity zone as % of total S/R distance. 50.5% means half the range is considered a valid entry zone. Decrease for more precise entries.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">06</div><h3>ATR Filter (Volatility)</h3></div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>UseATR</td><td class="default-val">true</td><td class="desc-col">Activates the volatility filter. Blocks entries when current ATR is too far from the average — avoids explosive news candles and extreme ranging periods.</td></tr>
+          <tr><td>ATRPeriod</td><td class="default-val">8</td><td class="desc-col">Fast ATR period. Slow ATR uses ATRPeriod × 3 = 24 candles. The comparison between them determines if current volatility is "normal" for the asset.</td></tr>
+          <tr><td>ATRMaxMult</td><td class="default-val">1.3×</td><td class="desc-col">Maximum multiplier: fast ATR cannot be greater than 1.3× the slow ATR. Blocks entries during extreme volatility (news, liquidations).</td></tr>
+          <tr><td>ATRMinMult</td><td class="default-val">0.3×</td><td class="desc-col">Minimum multiplier: fast ATR cannot be less than 0.3× the slow ATR. Blocks entries when the market is completely dead and without movement.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">07</div><h3>Daily Protection</h3></div>
+
+      <div class="alert alert-warn">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+          <h4>When daily protection is activated</h4>
+          <p>When any of the limits below are reached, the robot stops opening new trades until midnight UTC the next day. Open positions continue to be managed normally.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>MaxTradesPerDay</td><td class="default-val">61</td><td class="desc-col">Maximum number of trades per day. At 61 trades, the robot stops and waits for the next day. Avoids overtrading on days with many false signals.</td></tr>
+          <tr><td>MaxDailyLossUSD</td><td class="default-val">$1.20</td><td class="desc-col">Maximum accumulated daily loss. When losing $1.20 total for the day (sum of all trades), the robot stops immediately. Protects capital from bad days.</td></tr>
+          <tr><td>MaxConsecLosses</td><td class="default-val">3</td><td class="desc-col">Maximum consecutive losses. After 3 losses in a row without any win, the robot stops. Indicates the market may be in a bad mode for the strategy.</td></tr>
+          <tr><td>CooldownMinutes</td><td class="default-val">2 min</td><td class="desc-col">Minimum interval between trades. The robot waits 2 minutes after closing a position before opening the next. Avoids burst entries at the same price level.</td></tr>
+          <tr><td>CloseOnSLTPFailure</td><td class="default-val">true</td><td class="desc-col">If after 5 attempts the SL/TP cannot be applied to the broker, the robot closes the position for safety. Never leaves an order exposed without protection.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-group">
+      <div class="param-group-title"><div class="num">08</div><h3>Display</h3></div>
+      <table>
+        <thead><tr><th>Parameter</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>ShowPanel</td><td class="default-val">true</td><td class="desc-col">Displays the information panel in the top-right corner of the chart. Shows account status, open position, active filters and daily counters in real time.</td></tr>
+          <tr><td>ShowDebug</td><td class="default-val">true</td><td class="desc-col">Displays detailed logs in the cTrader console. Shows each entry block with the reason (EMA, S/R, ATR), SL/TP calculations and confirmations. Disable in production for better performance.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="logic">
+  <div class="container">
+    <div class="section-label">// 03 — Logic</div>
+    <h2 class="section-title">Operation <span class="highlight">Flow</span></h2>
+    <p class="section-desc">How the bot decides to open, manage and close each position.</p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Daily Check</h4>
+          <p>Every candle, the bot checks if daily limits have been reached (max loss, trade count, consecutive losses, cooldown). If any limit is active, no new trades are opened.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Candle Pattern Detection</h4>
+          <p>On the previous closed candle (index -2), the bot checks if any active pattern is present — Inverted Hammer, Bearish Engulfing, etc. Candle strength must be ≥ MinCandleStrength.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Trend Filter (EMA)</h4>
+          <p>If UseEMA is active: bullish patterns are only valid with price above the EMA. Bearish patterns only valid below. Without EMA, the bot trades both directions freely.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>S/R Filter</h4>
+          <p>If UseSR is active: buys only occur when price is in the support zone (lower part of the range). Sells only in the resistance zone (upper part). Works together with the EMA — not independently.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>ATR Filter</h4>
+          <p>The fast ATR is compared to the slow ATR. If volatility is too high (>1.3×) or too low (<0.3×), the entry is blocked to avoid abnormal market conditions.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div class="flow-content">
+          <h4>Order Opening</h4>
+          <p>The order is opened WITHOUT SL/TP initially (always accepted by broker). Then SL and TP are applied as ABSOLUTE PRICES via ModifyPosition with up to 5 attempts. If it fails, the order is closed for safety.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">7</div>
+        <div class="flow-content">
+          <h4>Real-Time Management (OnTick)</h4>
+          <p>Every tick: checks if SL/TP are still present (reapplies if missing), updates peak profit, and applies Dynamic SL if active and profit ≥ configured floor.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">8</div>
+        <div class="flow-content">
+          <h4>Closing</h4>
+          <p>The position closes when price touches the TP (profit) or SL (loss) registered at the broker. The code does not close manually except in case of SL/TP failure or robot freeze.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="panel">
+  <div class="container">
+    <div class="section-label">// 04 — Panel</div>
+    <h2 class="section-title">The Chart <span class="highlight">Panel</span></h2>
+    <p class="section-desc">The panel appears in the top-right corner of the chart and updates in real time on every tick.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+      <div class="panel-mockup">
+        <div class="panel-line">═══════════════════════════════════</div>
+        <div class="panel-title">   VACUUM BTCUSD EDITION</div>
+        <div class="panel-line">═══════════════════════════════════</div>
+        <div><span class="panel-key">Account : </span><span class="panel-val">$1,250.43 | Eq=$1,251.20</span></div>
+        <div><span class="panel-key">Spread : </span><span class="panel-val">12.3p</span></div>
+        <div class="panel-line">───────────────────────────────────</div>
+        <div><span class="panel-key">Candle : </span><span class="panel-orange">^Inv.Hammer</span></div>
+        <div><span class="panel-key">Trend/EMA: </span><span class="panel-blue">EMA165=84521.30</span></div>
+        <div><span class="panel-key">ATR: </span><span class="panel-green">ATR=45.20(ok)</span></div>
+        <div><span class="panel-key">S/R: </span><span class="panel-val">S/R OFF</span></div>
+        <div class="panel-line">───────────────────────────────────</div>
+        <div><span class="panel-key">POSITION: </span><span class="panel-green">Buy 0.01u | PnL=$0.14</span></div>
+        <div><span class="panel-key">  Entry=</span><span class="panel-val">84530.00</span><span class="panel-key"> Peak=</span><span class="panel-val">$0.18</span></div>
+        <div><span class="panel-key">  SL=</span><span class="panel-red">84360.00</span><span class="panel-key"> TP=</span><span class="panel-green">84550.00</span></div>
+        <div><span class="panel-key">  SL Dyn: </span><span class="panel-orange">ACTIVE</span></div>
+        <div class="panel-line">───────────────────────────────────</div>
+        <div><span class="panel-key">Trades : </span><span class="panel-val">23/61</span></div>
+        <div><span class="panel-key">PnL day: </span><span class="panel-green">$1.84</span><span class="panel-key"> (stop=$1.20)</span></div>
+        <div><span class="panel-key">Consec : </span><span class="panel-val">0/3</span></div>
+        <div><span class="panel-key">Status : </span><span class="panel-green">✅ FREE</span></div>
+        <div class="panel-line">═══════════════════════════════════</div>
+      </div>
+
+      <div>
+        <h3 style="font-size:1.1rem; margin-bottom:1.5rem; color: var(--accent)">Panel Legend</h3>
+
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--accent2); margin-bottom:0.3rem">Account / Spread</div>
+            <div style="font-size:0.82rem; color:var(--muted)">Balance, equity and current spread in pips. Watch the spread — above 20p on BTCUSD can hurt small trades.</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--accent2); margin-bottom:0.3rem">Candle</div>
+            <div style="font-size:0.82rem; color:var(--muted)">Pattern detected on the last closed candle. "^" = bullish, "v" = bearish, "-" = none.</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--accent2); margin-bottom:0.3rem">POSITION</div>
+            <div style="font-size:0.82rem; color:var(--muted)">Type, volume, current PnL and peak profit. SL and TP as absolute prices. "⚠ MISSING" means problem — the bot will retry.</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--accent2); margin-bottom:0.3rem">Status</div>
+            <div style="font-size:0.82rem; color:var(--muted)">✅ FREE = operating normally. 🔒 BLOCKED = temporary limit (cooldown, etc). ⛔ PAUSED = daily limit reached.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="installation">
+  <div class="container">
+    <div class="section-label">// 05 — Installation</div>
+    <h2 class="section-title">How to <span class="highlight">Install</span></h2>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Open the Editor in cTrader</h4>
+          <p>In cTrader, go to <strong>Automate → New cBot</strong>. Name it <code style="color:var(--accent2); font-family:'Space Mono',monospace">VacuumBTCUSD</code>.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Paste the Code</h4>
+          <p>Replace all editor content with the code from the file <code style="color:var(--accent2); font-family:'Space Mono',monospace">VacuumBTCUSD.cs</code>. Press <strong>F6</strong> to compile.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Set Up the Chart</h4>
+          <p>Open a <strong>BTCUSD M1 chart</strong>. Drag the cBot to the chart or double-click in the compiled bots list.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Load Parameters (optional)</h4>
+          <p>In the parameters window, click the gear icon ⚙ and select <strong>Import Parameters</strong>. Import the optimized JSON file.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>Test on Demo Account</h4>
+          <p>Always run on a <strong>demo account</strong> first for at least 1-2 days. Monitor the log with <code style="color:var(--accent2); font-family:'Space Mono',monospace">ShowDebug: true</code> to confirm SL/TP are applied correctly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-success" style="margin-top:3rem">
+      <div class="alert-icon">✅</div>
+      <div class="alert-content">
+        <h4>SL/TP Confirmation in Log</h4>
+        <p>After opening each order, the log should show: <code style="color:var(--accent3); font-family:'Space Mono',monospace">SL/TP aplicados (tentativa 1) ✓ | SL=84360.00 TP=84550.00</code>. This confirms protection was registered at the broker.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-content">
+        <h4>Warning: BTCUSD only</h4>
+        <p>This bot is calibrated exclusively for BTCUSD CFD. The USD→price conversion formula uses this asset's specific characteristics (LotSize=1, PipSize=1.0). Using on other assets will produce incorrect SL/TP values.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:3rem; margin-bottom:1rem; font-size:1.1rem">Optimized Parameters (JSON)</h3>
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <div class="code-lang">BTCUSD_optimized.json</div>
+      </div>
+      <pre>{
+  <span class="json-key">"Chart"</span>: {
+    <span class="json-key">"Symbol"</span>: <span class="json-str">"BTCUSD"</span>,
+    <span class="json-key">"Period"</span>: <span class="json-str">"m1"</span>
+  },
+  <span class="json-key">"Parameters"</span>: {
+    <span class="json-comment">// Volume</span>
+    <span class="json-key">"Volume"</span>:          <span class="json-val">0.01</span>,
+    <span class="json-key">"StopLossUSD"</span>:    <span class="json-val">1.70</span>,
+    <span class="json-key">"TakeProfitUSD"</span>:  <span class="json-val">0.20</span>,
+
+    <span class="json-comment">// Dynamic SL</span>
+    <span class="json-key">"UseSLDinamico"</span>:      <span class="json-bool">false</span>,
+    <span class="json-key">"SLDinamicoPisoUSD"</span>: <span class="json-val">0.01</span>,
+    <span class="json-key">"SLDinamicoPercent"</span>: <span class="json-val">90.1</span>,
+
+    <span class="json-comment">// Candle Patterns</span>
+    <span class="json-key">"MinCandleStrength"</span>:   <span class="json-val">28.9</span>,
+    <span class="json-key">"IgnoreDoji"</span>:         <span class="json-bool">true</span>,
+    <span class="json-key">"UseHammer"</span>:          <span class="json-bool">false</span>,
+    <span class="json-key">"UseInvertedHammer"</span>:  <span class="json-bool">true</span>,
+    <span class="json-key">"UseBullishEngulfing"</span>:<span class="json-bool">false</span>,
+    <span class="json-key">"UseBullishHarami"</span>:   <span class="json-bool">false</span>,
+    <span class="json-key">"UseShootingStar"</span>:    <span class="json-bool">false</span>,
+    <span class="json-key">"UseBearishEngulfing"</span>:<span class="json-bool">true</span>,
+    <span class="json-key">"UseBearishHarami"</span>:   <span class="json-bool">false</span>,
+
+    <span class="json-comment">// Trend EMA</span>
+    <span class="json-key">"UseEMA"</span>:     <span class="json-bool">false</span>,
+    <span class="json-key">"EMAPeriod"</span>:  <span class="json-val">165</span>,
+
+    <span class="json-comment">// Support & Resistance</span>
+    <span class="json-key">"UseSR"</span>:           <span class="json-bool">false</span>,
+    <span class="json-key">"CandlesSR"</span>:       <span class="json-val">183</span>,
+    <span class="json-key">"ProximityPercent"</span>: <span class="json-val">50.5</span>,
+
+    <span class="json-comment">// ATR Filter</span>
+    <span class="json-key">"UseATR"</span>:     <span class="json-bool">true</span>,
+    <span class="json-key">"ATRPeriod"</span>:  <span class="json-val">8</span>,
+    <span class="json-key">"ATRMaxMult"</span>: <span class="json-val">1.3</span>,
+    <span class="json-key">"ATRMinMult"</span>: <span class="json-val">0.3</span>,
+
+    <span class="json-comment">// Daily Protection</span>
+    <span class="json-key">"MaxTradesPerDay"</span>:  <span class="json-val">61</span>,
+    <span class="json-key">"MaxDailyLossUSD"</span>:  <span class="json-val">1.20</span>,
+    <span class="json-key">"MaxConsecLosses"</span>:  <span class="json-val">3</span>,
+    <span class="json-key">"CooldownMinutes"</span>:  <span class="json-val">2</span>,
+    <span class="json-key">"CloseOnSLTPFailure"</span>: <span class="json-bool">true</span>,
+
+    <span class="json-comment">// Display</span>
+    <span class="json-key">"ShowPanel"</span>: <span class="json-bool">true</span>,
+    <span class="json-key">"ShowDebug"</span>: <span class="json-bool">true</span>
+  }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>VACUUM BTCUSD EDITION · v1.0 · <span>© 2025 Sedenir Vitorino</span></p>
+    <p style="margin-top:0.5rem; font-size:0.7rem">All rights reserved. Exclusive use on BTCUSD CFD in cTrader.</p>
+    <p style="margin-top:0.5rem; font-size:0.68rem; color:#3a3a4a">This software does not guarantee profits. Always trade with proper risk management.</p>
+  </div>
+</footer>
+
+</body>
+</html>
